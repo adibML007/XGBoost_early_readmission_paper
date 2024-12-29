@@ -1,6 +1,6 @@
 This is the code repository for the paper [DOI to be entered here]
 
-Request access to the dataset here: [text](https://physionet.org/content/heart-failure-zigong/1.3/)
+Request access to the dataset here: [Physionet-data-access](https://physionet.org/content/heart-failure-zigong/1.3/)
 
 Steps to run the files:
 
