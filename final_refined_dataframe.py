@@ -1,3 +1,8 @@
+"""
+This script performs data preprocessing, model training, and evaluation for predicting early readmission using XGBoost.
+It includes steps for handling imbalanced data with SMOTE, evaluating model performance, and visualizing results.
+Additionally, it generates SHAP plots for feature importance and plots for ROC and Precision-Recall curves.
+"""
 import pandas as pd
 import json
 from pre_processing_steps import preprocess_dataframe
