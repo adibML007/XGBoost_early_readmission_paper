@@ -18,7 +18,6 @@ df = df[(df['death.within.3.months'] == 0) | (df['death.within.6.months'] == 0)]
 
 y = df['re.admission.within.28.days']
 
-
 # Remove irrelevant columns from the dataframe
 df = pd.concat([df[data["Selected_Features"]], y], axis=1)
 
