@@ -1,3 +1,9 @@
+"""
+Author: Adib Zaman
+Date: December 2024
+Description: This script performs K-Fold Cross Validation using XGBoost for predicting early readmission within 28 days. 
+It includes data preprocessing, feature selection using Recursive Feature Elimination (RFE), and handling class imbalance with SMOTE.
+"""
 import pandas as pd
 import numpy as np
 from matplotlib import pyplot as plt
@@ -123,9 +129,9 @@ for fold, (train_index, test_index) in enumerate(kf.split(X, y), start=1):
 print(results_df)
 
 # Save results to CSV
-timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
-# filename = f"Prelim_results_{timestamp}.csv"
-# results_df.to_csv(filename, index=False)
+# timestamp = datetime.datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
+filename = "Prelim_results.csv"
+results_df.to_csv(filename, index=False)
 
-max_filename = f"Max_scores_{timestamp}.json"
+max_filename = "Max_scores.json"
 max_scores_df.to_json(max_filename, orient='records', lines=True)
