@@ -16,7 +16,6 @@ from sklearn.feature_selection import RFE
 from xgboost import XGBClassifier
 from imblearn.over_sampling import SMOTE
 import warnings
-import datetime
 
 # Import custom functions
 from pre_processing_steps import preprocess_dataframe
@@ -29,13 +28,23 @@ df = pd.read_csv("dat.csv")
 df = preprocess_dataframe(df, 'best_tuner')
 df.fillna(df.median(), inplace=True)
 
+# Plot feature correlation with respect to early readmission
+plt.figure(figsize=(10, 50))
+df.drop(columns="re.admission.within.28.days").corrwith(df['re.admission.within.28.days']).plot(kind='line', color='green')
+plt.title("Feature correlation with respect to early readmission")
+plt.ylim(-0.15, 0.15)
+plt.xlabel("Correlation score with early readmission")
+plt.ylabel("Features")
+plt.xticks(range(len(df.columns[:-1])), df.columns[:-1], rotation=90)
+plt.savefig("feature_correlation.png")
+
 # Separate features (X) and target variable (y)
 X = df.drop('re.admission.within.28.days', axis=1)
 y = df['re.admission.within.28.days']
 
 # Standardize features
 scaler = StandardScaler()
-X = pd.DataFrame(X, columns=X.columns)
+X = pd.DataFrame(scaler.fit_transform(X), columns=X.columns)
 
 # Initialize K-Fold Cross Validation
 kf = KFold(n_splits=10, random_state=4, shuffle=True)
